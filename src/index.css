@@ -1,0 +1,62 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  body {
+    @apply bg-[#4d4d4d];
+  }
+  .navLinks {
+    @apply border border-transparent text-[#292929] p-2 hover:bg-[#f8df00] hover:border-[#292929] md:text-white;
+  }
+  .navLinks.active {
+    @apply bg-[#f8df00] border-[#292929];
+  }
+  .placeList {
+    @apply mx-auto my-4 w-11/12 max-w-2xl;
+  }
+}
+
+@layer components {
+  .slide-in-left-enter {
+    transform: translateX(-100%);
+  }
+
+  .slide-in-left-enter-active {
+    transform: translateX(0);
+    opacity: 1;
+    transition: all 200ms;
+  }
+
+  .slide-in-left-exit {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+
+  .slide-in-left-exit-active {
+    transform: translateX(-100%);
+    opacity: 0;
+    transition: all 200ms;
+  }
+  .modal-enter {
+    transform: translateY(-10rem);
+    opacity: 0;
+  }
+
+  .modal-enter-active {
+    transform: translateY(0);
+    opacity: 1;
+    transition: all 200ms;
+  }
+
+  .modal-exit {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .modal-exit-active {
+    transform: translateY(-10rem);
+    opacity: 0;
+    transition: all 200ms;
+  }
+}
