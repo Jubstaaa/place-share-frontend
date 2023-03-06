@@ -19,7 +19,7 @@ function UserItem({ item }) {
               {item.name}
             </h2>
             <h3 className="font-medium group-hover:text-[#292929]">
-              {item.places} {item.places === 1 ? "Place" : "Places"}
+              {item.places.length} {item.places === 1 ? "Place" : "Places"}
             </h3>
           </div>
         </Link>

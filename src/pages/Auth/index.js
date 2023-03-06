@@ -9,6 +9,9 @@ import {
 } from "../../util/validators";
 import { useForm } from "../../hooks/form-hook";
 import { AuthContext } from "../../context/auth-context";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { login, signup } from "../../util/user";
 
 function Auth() {
   const auth = useContext(AuthContext);
@@ -26,9 +29,14 @@ function Auth() {
 
   const [isLoginMode, setIsLoginMode] = useState(true);
 
-  const authSubmitHandler = (event) => {
+  const authSubmitHandler = async (event) => {
     event.preventDefault();
-    auth.login();
+
+    if (isLoginMode) {
+      login(formState, auth);
+    } else {
+      signup(formState, auth);
+    }
   };
 
   const switchModeHandler = (event) => {

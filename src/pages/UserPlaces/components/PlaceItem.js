@@ -1,11 +1,14 @@
 import React, { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import Card from "../../../components/UIElements/Card";
 import Button from "../../../components/FormElements/Button";
 import Modal from "../../../components/UIElements/Modal";
 import Map from "../../../components/UIElements/Map";
 import { AuthContext } from "../../../context/auth-context";
+import { deletePlace } from "../../../util/place";
 
-function PlaceItem({ item }) {
+function PlaceItem({ item, onDelete }) {
+  const navigate = useNavigate();
   const auth = useContext(AuthContext);
   const [showMap, setShowMap] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -18,9 +21,10 @@ function PlaceItem({ item }) {
 
   const cancelDeleteWarningHandler = () => setShowConfirmModal(false);
 
-  const confirmDeleteWarningHandler = () => {
+  const confirmDeleteWarningHandler = async () => {
     setShowConfirmModal(false);
-    console.log("DELETING...");
+    await deletePlace(item.id, navigate, auth);
+    onDelete(item.id);
   };
 
   return (
@@ -61,7 +65,7 @@ function PlaceItem({ item }) {
           <div className="w-full h-48 mr-6 md:h-80">
             <img
               className="w-full h-full object-cover"
-              src={item.imageUrl}
+              src={item.image}
               alt={item.title}
             />
           </div>
@@ -74,7 +78,7 @@ function PlaceItem({ item }) {
             <Button inverse onClick={openMapHandler}>
               VIEW ON MAP
             </Button>
-            {auth.isLoggedIn && (
+            {auth.userId === item.creator && (
               <>
                 <Button to={`/places/${item.id}`}>EDIT</Button>
                 <Button danger onClick={showDeleteWarningHandler}>

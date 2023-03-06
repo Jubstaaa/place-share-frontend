@@ -37,7 +37,7 @@ function Header() {
         </button>
         <h1 className="text-white">
           <Link className="text-white" to={"/"}>
-            YourPlaces
+            Place Share
           </Link>
         </h1>
         <nav className="hidden md:block">

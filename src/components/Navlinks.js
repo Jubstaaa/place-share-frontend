@@ -23,7 +23,7 @@ function Navlinks() {
             className={({ isActive }) =>
               isActive ? "navLinks active" : "navLinks"
             }
-            to={"/u1/places"}
+            to={`${auth.userId}/places`}
           >
             MY PLACES
           </NavLink>

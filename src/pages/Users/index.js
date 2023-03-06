@@ -1,16 +1,13 @@
 import UsersList from "./components/UsersList";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getUsers } from "../../util/user";
 
 function Users() {
-  const users = [
-    {
-      id: "u1",
-      name: "İlker Balcılar",
-      image:
-        "https://avatars.githubusercontent.com/u/9998250?s=400&u=d02f5b99b62315ddef450cfb7436fdd5fe832ed6&v=4",
-      places: 3,
-    },
-  ];
+  const [users, setUsers] = useState([]);
+  useEffect(() => {
+    getUsers(setUsers);
+  }, []);
+
   return <UsersList users={users} />;
 }
 

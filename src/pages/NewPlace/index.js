@@ -2,8 +2,15 @@ import Input from "../../components/FormElements/Input";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../util/validators";
 import Button from "../../components/FormElements/Button";
 import { useForm } from "../../hooks/form-hook";
+import { useContext } from "react";
+import { AuthContext } from "../../context/auth-context";
+import { addPlace } from "../../util/place";
+import { useNavigate } from "react-router-dom";
 
 function NewPlace() {
+  const auth = useContext(AuthContext);
+  const navigate = useNavigate();
+
   const [formState, inputHandler] = useForm(
     {
       title: {
@@ -20,9 +27,8 @@ function NewPlace() {
 
   const placeSubmitHandler = (event) => {
     event.preventDefault();
-    console.log(formState.inputs); // send this to the backend
+    addPlace(formState, auth, navigate);
   };
-
   return (
     <form
       className="relative mx-auto p-4 w-11/12 max-w-2xl shadow-md rounded-md bg-white"

@@ -4,7 +4,7 @@ import PlaceItem from "./PlaceItem";
 import Card from "../../../components/UIElements/Card";
 import Button from "../../../components/FormElements/Button";
 
-function PlaceList({ places }) {
+function PlaceList({ places, onDeletePlace }) {
   return (
     <>
       {places.length === 0 ? (
@@ -17,7 +17,7 @@ function PlaceList({ places }) {
       ) : (
         <ul className="placeList">
           {places.map((place) => (
-            <PlaceItem key={place.id} item={place} />
+            <PlaceItem key={place.id} item={place} onDelete={onDeletePlace} />
           ))}
         </ul>
       )}
