@@ -1,7 +1,6 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-
 export const getUsers = async (setUsers) => {
   axios
     .get("http://localhost:9230/api/users")
@@ -45,20 +44,13 @@ export const login = async (formState, auth) => {
 
 export const signup = (formState, auth) => {
   const loading = toast.loading("Signing Up...");
+  const formData = new FormData();
+  formData.append("email", formState.inputs.email.value);
+  formData.append("name", formState.inputs.name.value);
+  formData.append("password", formState.inputs.password.value);
+  formData.append("image", formState.inputs.image.value);
   axios
-    .post(
-      "http://localhost:9230/api/users/signup",
-      {
-        name: formState.inputs.name.value,
-        email: formState.inputs.email.value,
-        password: formState.inputs.password.value,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    .post("http://localhost:9230/api/users/signup", formData)
     .then((res) => {
       toast.success("Successfully registered", {
         id: loading,

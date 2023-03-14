@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../context/auth-context";
 import { addPlace } from "../../util/place";
 import { useNavigate } from "react-router-dom";
+import ImageUpload from "../../components/FormElements/ImageUpload";
 
 function NewPlace() {
   const auth = useContext(AuthContext);
@@ -19,6 +20,14 @@ function NewPlace() {
       },
       description: {
         value: "",
+        idValid: false,
+      },
+      address: {
+        value: "",
+        idValid: false,
+      },
+      image: {
+        value: null,
         idValid: false,
       },
     },
@@ -59,6 +68,7 @@ function NewPlace() {
         errorText="Please enter a valid description (at least 5 characters)."
         onInput={inputHandler}
       />
+      <ImageUpload id="image" onInput={inputHandler} />
       <Button type="submit" disabled={!formState.isValid}>
         ADD PLACE
       </Button>

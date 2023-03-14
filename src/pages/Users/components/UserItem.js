@@ -12,7 +12,10 @@ function UserItem({ item }) {
           className="flex items-center w-full h-full p-4 text-white bg-[#292929] hover:bg-[#ffd900] group"
         >
           <div className="w-16 h-16 mr-4">
-            <Avatar image={item.image} alt={item.name} />
+            <Avatar
+              image={`http://localhost:9230/${item.image}`}
+              alt={item.name}
+            />
           </div>
           <div>
             <h2 className="text-2xl mb-2 text-[#ffd900] group-hover:text-[#292929]">

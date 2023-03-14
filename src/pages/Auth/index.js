@@ -12,6 +12,7 @@ import { AuthContext } from "../../context/auth-context";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { login, signup } from "../../util/user";
+import ImageUpload from "../../components/FormElements/ImageUpload";
 
 function Auth() {
   const auth = useContext(AuthContext);
@@ -45,6 +46,7 @@ function Auth() {
         {
           ...formState.inputs,
           name: undefined,
+          image: undefined,
         },
         formState.inputs.email.isValid && formState.inputs.password.isValid
       );
@@ -54,6 +56,10 @@ function Auth() {
           ...formState.inputs,
           name: {
             value: "",
+            isValid: false,
+          },
+          image: {
+            value: null,
             isValid: false,
           },
         },
@@ -69,15 +75,18 @@ function Auth() {
       <hr />
       <form onSubmit={authSubmitHandler} className="mb-4">
         {!isLoginMode && (
-          <Input
-            element="input"
-            id="name"
-            type="text"
-            label="Name"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter a name."
-            onInput={inputHandler}
-          />
+          <>
+            <Input
+              element="input"
+              id="name"
+              type="text"
+              label="Name"
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please enter a name."
+              onInput={inputHandler}
+            />
+            <ImageUpload id="image" onInput={inputHandler} />
+          </>
         )}
         <Input
           element="input"

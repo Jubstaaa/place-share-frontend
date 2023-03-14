@@ -3,21 +3,14 @@ import toast from "react-hot-toast";
 
 export const addPlace = (formState, auth, navigate) => {
   const loading = toast.loading("Place Adding...");
+  const formData = new FormData();
+  formData.append("title", formState.inputs.title.value);
+  formData.append("description", formState.inputs.description.value);
+  formData.append("address", formState.inputs.address.value);
+  formData.append("creator", auth.userId);
+  formData.append("image", formState.inputs.image.value);
   axios
-    .post(
-      "http://localhost:9230/api/places",
-      {
-        title: formState.inputs.title.value,
-        description: formState.inputs.description.value,
-        address: formState.inputs.address.value,
-        creator: auth.userId,
-      },
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    )
+    .post("http://localhost:9230/api/places", formData)
     .then((res) => {
       toast.success("Successfully added", {
         id: loading,
