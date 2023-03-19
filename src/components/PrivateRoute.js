@@ -6,7 +6,7 @@ function PrivateRoute({ children }) {
   const user = useContext(AuthContext);
 
   const location = useLocation();
-  if (!user.isLoggedIn) {
+  if (!user.token) {
     return (
       <Navigate
         to="/auth"

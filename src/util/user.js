@@ -3,7 +3,7 @@ import toast from "react-hot-toast";
 
 export const getUsers = async (setUsers) => {
   axios
-    .get("http://localhost:9230/api/users")
+    .get(process.env.REACT_APP_BACKEND_URL + "/users")
     .then((res) => {
       setUsers(res.data.users);
     })
@@ -16,7 +16,7 @@ export const login = async (formState, auth) => {
   const loading = toast.loading("Signing In...");
   axios
     .get(
-      "http://localhost:9230/api/users/login",
+      process.env.REACT_APP_BACKEND_URL + "/users/login",
       {
         params: {
           email: formState.inputs.email.value,
@@ -33,7 +33,7 @@ export const login = async (formState, auth) => {
       toast.success("Successfully login", {
         id: loading,
       });
-      auth.login(res.data.user.id);
+      auth.login(res.data.userId, res.data.token);
     })
     .catch((err) => {
       toast.error(err.response.data.message, {
@@ -50,12 +50,12 @@ export const signup = (formState, auth) => {
   formData.append("password", formState.inputs.password.value);
   formData.append("image", formState.inputs.image.value);
   axios
-    .post("http://localhost:9230/api/users/signup", formData)
+    .post(process.env.REACT_APP_BACKEND_URL + "/users/signup", formData)
     .then((res) => {
       toast.success("Successfully registered", {
         id: loading,
       });
-      auth.login(res.data.user.id);
+      auth.login(res.data.userId, res.data.token);
     })
     .catch((err) => {
       toast.error(err.response.data.message, {

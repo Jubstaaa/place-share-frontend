@@ -65,7 +65,7 @@ function PlaceItem({ item, onDelete }) {
           <div className="w-full h-48 mr-6 md:h-80">
             <img
               className="w-full h-full object-cover"
-              src={`http://localhost:9230/${item.image}`}
+              src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
               alt={item.title}
             />
           </div>

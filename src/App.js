@@ -1,32 +1,20 @@
 import { useRoutes } from "react-router-dom";
 import routes from "./routes";
 import { AuthContext } from "./context/auth-context";
-import { useState, useCallback } from "react";
-import { useNavigate } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
+import useAuth from "./hooks/auth-hook";
+import { Suspense } from "react";
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [userId, setUserId] = useState(false);
-  const navigate = useNavigate();
-
-  const login = useCallback((uid) => {
-    setIsLoggedIn(true);
-    setUserId(uid);
-    navigate("/");
-  }, []);
-
-  const logout = useCallback(() => {
-    setIsLoggedIn(false);
-    setUserId(null);
-    navigate("/auth");
-  }, []);
+  const { token, login, logout, userId } = useAuth();
 
   const showRoutes = useRoutes(routes);
   return (
-    <AuthContext.Provider value={{ isLoggedIn, userId, login, logout }}>
+    <AuthContext.Provider
+      value={{ isLoggedIn: !!token, token, userId, login, logout }}
+    >
       <Toaster />
-      {showRoutes}
+      <Suspense>{showRoutes}</Suspense>
     </AuthContext.Provider>
   );
 }

@@ -7,10 +7,13 @@ export const addPlace = (formState, auth, navigate) => {
   formData.append("title", formState.inputs.title.value);
   formData.append("description", formState.inputs.description.value);
   formData.append("address", formState.inputs.address.value);
-  formData.append("creator", auth.userId);
   formData.append("image", formState.inputs.image.value);
   axios
-    .post("http://localhost:9230/api/places", formData)
+    .post(process.env.REACT_APP_BACKEND_URL + "/places", formData, {
+      headers: {
+        Authorization: "Bearer " + auth.token,
+      },
+    })
     .then((res) => {
       toast.success("Successfully added", {
         id: loading,
@@ -26,7 +29,7 @@ export const addPlace = (formState, auth, navigate) => {
 
 export const getPlaces = async (setPlaces, userId) => {
   axios
-    .get(`http://localhost:9230/api/places/user/${userId}`)
+    .get(`${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`)
     .then((res) => {
       setPlaces(res.data.places);
     })
@@ -37,7 +40,7 @@ export const getPlaces = async (setPlaces, userId) => {
 
 export const getPlaceById = async (setPlace, placeId) => {
   axios
-    .get(`http://localhost:9230/api/places/${placeId}`)
+    .get(`${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`)
     .then((res) => {
       setPlace(res.data.place);
     })
@@ -49,10 +52,18 @@ export const getPlaceById = async (setPlace, placeId) => {
 export const updatePlaceById = async (formState, placeId, navigate, auth) => {
   const loading = toast.loading("Place Updating...");
   axios
-    .patch(`http://localhost:9230/api/places/${placeId}`, {
-      title: formState.inputs.title.value,
-      description: formState.inputs.description.value,
-    })
+    .patch(
+      `${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`,
+      {
+        title: formState.inputs.title.value,
+        description: formState.inputs.description.value,
+      },
+      {
+        headers: {
+          Authorization: "Bearer " + auth.token,
+        },
+      }
+    )
     .then((res) => {
       toast.success("Successfully updated", {
         id: loading,
@@ -67,7 +78,11 @@ export const updatePlaceById = async (formState, placeId, navigate, auth) => {
 export const deletePlace = async (placeId, navigate, auth) => {
   const loading = toast.loading("Place Deleting...");
   axios
-    .delete(`http://localhost:9230/api/places/${placeId}`)
+    .delete(`${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`, {
+      headers: {
+        Authorization: "Bearer " + auth.token,
+      },
+    })
     .then((res) => {
       toast.success("Successfully deleted", {
         id: loading,

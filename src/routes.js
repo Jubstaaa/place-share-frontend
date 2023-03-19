@@ -1,10 +1,13 @@
-import Users from "./pages/Users";
+import React from "react";
+
 import Layout from "./components/Layout";
-import NewPlace from "./pages/NewPlace";
-import UserPlaces from "./pages/UserPlaces";
-import UpdatePlace from "./pages/UpdatePlace";
-import Auth from "./pages/Auth";
 import PrivateRoute from "./components/PrivateRoute";
+
+const Users = React.lazy(() => import("./pages/Users"));
+const NewPlace = React.lazy(() => import("./pages/NewPlace"));
+const UserPlaces = React.lazy(() => import("./pages/UserPlaces"));
+const UpdatePlace = React.lazy(() => import("./pages/UpdatePlace"));
+const Auth = React.lazy(() => import("./pages/Auth"));
 
 const routes = [
   {

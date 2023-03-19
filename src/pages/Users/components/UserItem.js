@@ -13,7 +13,7 @@ function UserItem({ item }) {
         >
           <div className="w-16 h-16 mr-4">
             <Avatar
-              image={`http://localhost:9230/${item.image}`}
+              image={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
               alt={item.name}
             />
           </div>
