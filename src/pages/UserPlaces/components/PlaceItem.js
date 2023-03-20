@@ -61,33 +61,40 @@ function PlaceItem({ item, onDelete }) {
         </p>
       </Modal>
       <li className="my-4">
-        <Card>
-          <div className="w-full h-48 mr-6 md:h-80">
-            <img
-              className="w-full h-full object-cover"
-              src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
-              alt={item.title}
-            />
-          </div>
-          <div className="p-4 text-center">
-            <h2 className="mb-2">{item.title}</h2>
+        <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow">
+          <img
+            className="rounded-t-lg"
+            src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
+            alt={item.title}
+          />
+          <div className="p-5">
+            <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
+              {item.title}
+            </h2>
             <h3 className="mb-2">{item.address}</h3>
-            <p className="mb-2">{item.description}</p>
-          </div>
-          <div className="p-4 text-center border border-[#ccc]">
-            <Button inverse onClick={openMapHandler}>
+            <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">
+              {item.description}
+            </p>
+
+            <Button
+              type="button"
+              className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={openMapHandler}
+            >
               VIEW ON MAP
             </Button>
             {auth.userId === item.creator && (
               <>
-                <Button to={`/places/${item.id}`}>EDIT</Button>
+                <Button info to={`/places/${item.id}`}>
+                  EDIT
+                </Button>
                 <Button danger onClick={showDeleteWarningHandler}>
                   DELETE
                 </Button>
               </>
             )}
           </div>
-        </Card>
+        </div>
       </li>
     </>
   );

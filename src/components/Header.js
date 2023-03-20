@@ -26,23 +26,28 @@ function Header() {
           </nav>
         </SideHeader>
       )}
-      <header className="w-full h-16 flex md:justify-between items-center fixed inset-0 bg-[#ff0055] shadow-md px-4 z-10">
-        <button
-          onClick={openSidebarHandle}
-          className="flex md:hidden w-12 h-12 bg-transparent flex-col justify-around mr-8 cursor-pointer"
-        >
-          <span className="block w-12 h-1 bg-white"></span>
-          <span className="block w-12 h-1 bg-white"></span>
-          <span className="block w-12 h-1 bg-white"></span>
-        </button>
-        <h1 className="text-white">
-          <Link className="text-white" to={"/"}>
-            Place Share
-          </Link>
-        </h1>
-        <nav className="hidden md:block">
-          <Navlinks />
-        </nav>
+      <header className="bg-white py-2 md:py-4">
+        <div className="container px-4 mx-auto md:flex md:items-center">
+          <div className="flex justify-between items-center">
+            <Link className="font-bold text-xl text-indigo-600" to={"/"}>
+              Place Share
+            </Link>
+            <button
+              onClick={openSidebarHandle}
+              className="border border-solid border-gray-600 px-3 py-1 rounded text-gray-600 opacity-50 hover:opacity-75 md:hidden"
+              id="navbar-toggle"
+            >
+              <div className="flex md:hidden w-8 h-8 bg-transparent flex-col justify-around cursor-pointer">
+                <span className="block w-8 h-1 bg-gray-600"></span>
+                <span className="block w-8 h-1 bg-gray-600"></span>
+                <span className="block w-8 h-1 bg-gray-600"></span>
+              </div>
+            </button>
+          </div>
+          <nav className="hidden md:flex flex-col md:flex-row md:ml-auto mt-3 md:mt-0">
+            <Navlinks />
+          </nav>
+        </div>
       </header>
     </>
   );

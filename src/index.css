@@ -7,13 +7,13 @@
     @apply bg-[#4d4d4d];
   }
   .navLinks {
-    @apply border border-transparent text-[#292929] p-2 hover:bg-[#f8df00] hover:border-[#292929] md:text-white;
+    @apply p-2 lg:px-4 md:mx-2 text-gray-600 rounded hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300;
   }
   .navLinks.active {
-    @apply bg-[#f8df00] border-[#292929];
+    @apply text-white bg-indigo-600;
   }
   .placeList {
-    @apply mx-auto my-4 w-11/12 max-w-2xl;
+    @apply container mx-auto grid grid-cols-1 px-10 md:px-0 md:grid-cols-2 gap-12;
   }
 }
 

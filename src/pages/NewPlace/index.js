@@ -40,7 +40,7 @@ function NewPlace() {
   };
   return (
     <form
-      className="relative mx-auto p-4 w-11/12 max-w-2xl shadow-md rounded-md bg-white"
+      className="relative mx-auto p-4 w-11/12 max-w-2xl shadow-md rounded-md bg-white space-y-6"
       onSubmit={placeSubmitHandler}
     >
       <Input

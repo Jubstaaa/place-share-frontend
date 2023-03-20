@@ -12,7 +12,7 @@ function UsersList({ users }) {
           </div>
         </Card>
       ) : (
-        <ul className="m-auto w-11/12 max-w-3xl flex justify-center flex-wrap">
+        <ul className="container mx-auto grid grid-cols-1 px-10 md:px-0 md:grid-cols-3 gap-12">
           {users.map((user) => (
             <UserItem key={user.id} item={user} />
           ))}

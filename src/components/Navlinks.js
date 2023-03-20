@@ -6,7 +6,7 @@ import Button from "./FormElements/Button";
 function Navlinks() {
   const auth = useContext(AuthContext);
   return (
-    <ul className="w-full h-full flex flex-col md:flex-row justify-center items-center">
+    <ul className="flex flex-col items-center md:flex-row md:ml-auto mt-3 md:mt-0">
       <li className="m-4 md:mx-2 md:my-0">
         <NavLink
           className={({ isActive }) =>
@@ -55,9 +55,7 @@ function Navlinks() {
       )}
       {auth.isLoggedIn && (
         <li className="m-4 md:mx-2 md:my-0">
-          <Button danger onClick={auth.logout}>
-            LOGOUT
-          </Button>
+          <Button onClick={auth.logout}>LOGOUT</Button>
         </li>
       )}
     </ul>

@@ -50,7 +50,7 @@ function Input(props) {
   const element =
     props.element === "input" ? (
       <input
-        className={`w-full border border-[#ccc] bg-[#f8f8f8] px-1 py-0.5 focus:outline-none focus:bg-[#ebebeb] focus:border-[#510077] ${
+        className={`bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 ${
           !inputState.isValid &&
           inputState.isTouched &&
           "border-red-500 bg-[#ffd1d1]"
@@ -64,7 +64,7 @@ function Input(props) {
       />
     ) : (
       <textarea
-        className={`w-full border border-[#ccc] bg-[#f8f8f8] px-1 py-0.5 focus:outline-none focus:bg-[#ebebeb] focus:border-[#510077] ${
+        className={`block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 ${
           !inputState.isValid &&
           inputState.isTouched &&
           "border-red-500 bg-[#ffd1d1]"
@@ -79,11 +79,14 @@ function Input(props) {
 
   return (
     <div
-      className={`my-4 block ${
+      className={`${
         !inputState.isValid && inputState.isTouched && "text-red-500"
       }`}
     >
-      <label className="font-bold mb-2" htmlFor={props.id}>
+      <label
+        className="block mb-2 text-sm font-medium text-gray-900"
+        htmlFor={props.id}
+      >
         {props.label}
       </label>
       {element}

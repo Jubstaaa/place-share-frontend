@@ -71,9 +71,9 @@ function Auth() {
 
   return (
     <Card className="w-11/12 max-w-sm mx-auto my-28 text-center">
-      <h2>Login Required</h2>
-      <hr />
-      <form onSubmit={authSubmitHandler} className="mb-4">
+      <form onSubmit={authSubmitHandler} className="space-y-6">
+        <h2 className="text-xl font-medium text-gray-900">Login Required</h2>
+
         {!isLoginMode && (
           <>
             <Input

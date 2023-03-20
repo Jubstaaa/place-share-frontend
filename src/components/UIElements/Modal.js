@@ -7,7 +7,7 @@ function ModalOverlay(props) {
   const content = (
     <div className="z-50 fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4/5 bg-white shadow-md rounded-lg md:w-11/12">
       <header
-        className={`w-full py-4 px-2 text-white bg-[#2a006e] ${props.headerClass}`}
+        className={`w-full py-4 px-2 text-white bg-indigo-600 ${props.headerClass}`}
       >
         <h2 className="m-2">{props.header}</h2>
       </header>
