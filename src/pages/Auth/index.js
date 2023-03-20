@@ -70,7 +70,7 @@ function Auth() {
   };
 
   return (
-    <Card className="w-11/12 max-w-sm mx-auto my-28 text-center">
+    <Card className="w-5/6 min-w-sm max-w-sm mx-auto my-28 text-center">
       <form onSubmit={authSubmitHandler} className="space-y-6">
         <h2 className="text-xl font-medium text-gray-900">Login Required</h2>
 
