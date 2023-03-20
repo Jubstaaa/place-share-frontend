@@ -1,14 +1,16 @@
 import axios from "axios";
 import toast from "react-hot-toast";
 
-export const getUsers = async (setUsers) => {
+export const getUsers = async (setUsers, setLoading) => {
   axios
     .get(process.env.REACT_APP_BACKEND_URL + "/users")
     .then((res) => {
       setUsers(res.data.users);
+      setLoading(false);
     })
     .catch((err) => {
       toast.error(err.response?.data.message || err.message);
+      setLoading(false);
     });
 };
 

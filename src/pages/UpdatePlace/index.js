@@ -7,6 +7,7 @@ import { useForm } from "../../hooks/form-hook";
 import Card from "../../components/UIElements/Card";
 import { getPlaceById, updatePlaceById } from "../../util/place";
 import { AuthContext } from "../../context/auth-context";
+import Loader from "../../components/UIElements/Loader";
 
 function UpdatePlace() {
   const auth = useContext(AuthContext);
@@ -16,7 +17,7 @@ function UpdatePlace() {
   const [place, setPlace] = useState(null);
 
   useEffect(() => {
-    getPlaceById(setPlace, placeId);
+    getPlaceById(setPlace, placeId, setIsLoading);
   }, []);
 
   const [formState, inputHandler, setFormData] = useForm({
@@ -31,7 +32,6 @@ function UpdatePlace() {
   });
 
   useEffect(() => {
-    setIsLoading(true);
     if (place) {
       setFormData(
         {
@@ -47,8 +47,6 @@ function UpdatePlace() {
         true
       );
     }
-
-    setIsLoading(false);
   }, [setFormData, place]);
 
   const submitHandler = async (event) => {
@@ -57,15 +55,8 @@ function UpdatePlace() {
   };
 
   if (isLoading) {
-    return (
-      <div className="text-center">
-        <Card>
-          <h2>Loading</h2>
-        </Card>
-      </div>
-    );
-  }
-  if (!place) {
+    return <Loader />;
+  } else if (!place) {
     return (
       <div className="text-center">
         <Card>

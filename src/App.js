@@ -3,7 +3,6 @@ import routes from "./routes";
 import { AuthContext } from "./context/auth-context";
 import { Toaster } from "react-hot-toast";
 import useAuth from "./hooks/auth-hook";
-import { Suspense } from "react";
 
 function App() {
   const { token, login, logout, userId } = useAuth();
@@ -14,7 +13,7 @@ function App() {
       value={{ isLoggedIn: !!token, token, userId, login, logout }}
     >
       <Toaster />
-      <Suspense>{showRoutes}</Suspense>
+      {showRoutes}
     </AuthContext.Provider>
   );
 }

@@ -27,25 +27,29 @@ export const addPlace = (formState, auth, navigate) => {
     });
 };
 
-export const getPlaces = async (setPlaces, userId) => {
+export const getPlaces = async (setPlaces, userId, setLoading) => {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/places/user/${userId}`)
     .then((res) => {
       setPlaces(res.data.places);
+      setLoading(false);
     })
     .catch((err) => {
       toast.error(err.response?.data.message || err.message);
+      setLoading(false);
     });
 };
 
-export const getPlaceById = async (setPlace, placeId) => {
+export const getPlaceById = async (setPlace, placeId, setIsLoading) => {
   axios
     .get(`${process.env.REACT_APP_BACKEND_URL}/places/${placeId}`)
     .then((res) => {
       setPlace(res.data.place);
+      setIsLoading(false);
     })
     .catch((err) => {
       toast.error(err.response?.data.message || err.message);
+      setIsLoading(false);
     });
 };
 

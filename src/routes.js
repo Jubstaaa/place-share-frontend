@@ -1,7 +1,7 @@
-import React from "react";
-
+import React, { Suspense } from "react";
 import Layout from "./components/Layout";
 import PrivateRoute from "./components/PrivateRoute";
+import Loader from "./components/UIElements/Loader";
 
 const Users = React.lazy(() => import("./pages/Users"));
 const NewPlace = React.lazy(() => import("./pages/NewPlace"));
@@ -16,25 +16,45 @@ const routes = [
     children: [
       {
         index: true,
-        element: <Users />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Users />
+          </Suspense>
+        ),
       },
       {
         path: "/places/new",
         auth: true,
-        element: <NewPlace />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <NewPlace />
+          </Suspense>
+        ),
       },
       {
         path: "/:userId/places",
-        element: <UserPlaces />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <UserPlaces />
+          </Suspense>
+        ),
       },
       {
         path: "/places/:placeId",
         auth: true,
-        element: <UpdatePlace />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <UpdatePlace />
+          </Suspense>
+        ),
       },
       {
         path: "/auth",
-        element: <Auth />,
+        element: (
+          <Suspense fallback={<Loader />}>
+            <Auth />
+          </Suspense>
+        ),
       },
     ],
   },
