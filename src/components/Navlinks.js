@@ -49,7 +49,7 @@ function Navlinks() {
             }
             to={"/auth"}
           >
-            AUTHENTICATE
+            LOGIN / SIGNUP
           </NavLink>
         </li>
       )}

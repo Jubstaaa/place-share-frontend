@@ -16,7 +16,7 @@ function UserItem({ item }) {
             {item.name}
           </h5>
           <span class="text-sm text-gray-500 dark:text-gray-400">
-            {item.places.length} {item.places === 1 ? "Place" : "Places"}
+            {item.places.length} {item.places.length === 1 ? "Place" : "Places"}
           </span>
           <div class="flex mt-4 space-x-3 md:mt-6">
             <Link
