@@ -28,7 +28,7 @@ function PlaceItem({ item, onDelete }) {
   };
 
   const onImageError = (e) => {
-    e.target.src = "/images/place.png";
+    e.target.src = "/images/place.jpg";
   };
 
   return (
