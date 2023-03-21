@@ -4,7 +4,7 @@ import Card from "../../../components/UIElements/Card";
 
 function UserItem({ item }) {
   const onImageError = (e) => {
-    e.target.src = "/images/place.jpg";
+    e.target.src = "/images/user.jpg";
   };
 
   return (
