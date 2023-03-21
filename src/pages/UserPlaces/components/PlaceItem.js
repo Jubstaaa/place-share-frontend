@@ -27,6 +27,10 @@ function PlaceItem({ item, onDelete }) {
     onDelete(item.id);
   };
 
+  const onImageError = (e) => {
+    e.target.src = "/images/user.png";
+  };
+
   return (
     <>
       <Modal
@@ -66,6 +70,7 @@ function PlaceItem({ item, onDelete }) {
             className="rounded-t-lg w-full"
             src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
             alt={item.title}
+            onError={onImageError}
           />
           <div className="p-5">
             <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900">
