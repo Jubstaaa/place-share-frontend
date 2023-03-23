@@ -68,7 +68,7 @@ function PlaceItem({ item, onDelete }) {
         <div className="w-full h-full bg-white border border-gray-200 rounded-lg shadow">
           <img
             className="rounded-t-lg w-full"
-            src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
+            src={item.image}
             alt={item.title}
             onError={onImageError}
           />

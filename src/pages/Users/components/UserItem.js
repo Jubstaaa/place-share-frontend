@@ -12,8 +12,8 @@ function UserItem({ item }) {
       <Card>
         <div class="flex flex-col items-center py-5">
           <img
-            class="w-24 h-24 mb-3 rounded-full shadow-lg"
-            src={`${process.env.REACT_APP_ASSET_URL}${item.image}`}
+            class="w-24 h-24 mb-3 rounded-full shadow-lg object-cover"
+            src={item.image}
             alt={item.name}
             onError={onImageError}
           />
